@@ -1,0 +1,77 @@
+swagger: "2.0"
+info:
+  version: 1.0.0
+  title: PagoPA newsletter
+  contact:
+    name: Technology team
+    url: https://github.com/pagopa/eng-newsletter
+  description: >
+    Documentation of the PagoPA newsletter subscription.
+host: localhost
+basePath: "/api/v1"
+schemes:
+  - https
+paths:
+  "/newsletters/{idClient}/lists/{idList}/recipients":
+    post:
+      operationId: PostNewslettersEmails
+      description: Add an email to newsletter
+      parameters:
+      - name: idList
+        in: path
+        required: true
+        description: list id
+        type: string
+      - name: idClient
+        in: path
+        required: true
+        description: client id
+        type: string
+        enum:
+          - "io" 
+          - "pagopa" 
+      - name: body
+        in: body
+        required: true
+        schema:
+          $ref: "#/definitions/RecipientRequest"
+      responses:
+        "200":
+          description: Recipient added
+          schema:
+            $ref: "#/definitions/RecipientResponse"
+        "400":
+          description: Bad request
+        "403":
+          description: forbidden
+        "500":
+          description: generic error
+definitions:
+    RecipientRequest:
+      type: object
+      required:
+          - email
+          - recaptchaToken
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        recaptchaToken:
+          type: string
+        groups:
+          type: array
+          items:
+            type: string  
+    RecipientResponse:
+      type: object
+      required:
+          - email
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+
