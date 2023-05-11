@@ -1,8 +1,8 @@
 #
 # General
 #
-env_short      = "d"
-env            = "dev"
+env_short      = "p"
+env            = "prod"
 prefix         = "news"
 location       = "westeurope"
 location_short = "weu"
@@ -12,7 +12,7 @@ adgroup_prefix = "org"
 
 tags = {
   CreatedBy   = "Terraform"
-  Environment = "DEV"
+  Environment = "PROD"
   Owner       = "Technology"
   Source      = "https://github.com/pagopa/eng-newsletter"
   CostCenter  = "TS110 - Technology"
