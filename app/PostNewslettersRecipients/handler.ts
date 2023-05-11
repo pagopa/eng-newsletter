@@ -209,24 +209,50 @@ export const getMailupAuthTokenTask = (
 export const addRecipientToMailupListOrGroupTask = (
   email: EmailString,
   name: string | undefined,
+  surname: string | undefined,
+  organization: string | undefined,
   token: NonEmptyString,
   path: string,
   mailupHost: string = "https://services.mailup.com"
 ): TaskEither<Error, number> =>
   tryCatch(
-    () =>
-      fetchApi(`${mailupHost}${path}`, {
-        body: JSON.stringify({
-          Email: email,
-          Name: name
-        }),
+    () => {
+      const request =
+        name !== undefined ||
+        surname !== undefined ||
+        organization !== undefined
+          ? {
+              Email: email,
+              Fields: [
+                {
+                  Description: "campo1",
+                  Value: name
+                },
+                {
+                  Description: "campo2",
+                  Value: surname
+                },
+                {
+                  Description: "campo3",
+                  Value: organization
+                }
+              ],
+              Name: name
+            }
+          : {
+              Email: email,
+              Name: name
+            };
+      return fetchApi(`${mailupHost}${path}`, {
+        body: JSON.stringify(request),
         headers: {
           // tslint:disable-next-line: prettier
           "Authorization": `Bearer ${token}`,
           "Content-Type": "application/json"
         },
         method: "POST"
-      }),
+      });
+    },
     err => new Error(`Error posting new recipient in List mailup API: ${err}`)
   )
     .chain(
@@ -258,13 +284,17 @@ export const addRecipientToMailupTask = (
   idList: NonEmptyString,
   email: EmailString,
   name: string | undefined,
+  surname: string | undefined,
   token: NonEmptyString,
-  groups: readonly string[] | undefined
+  groups: readonly string[] | undefined,
+  organization: string | undefined
 ): TaskEither<Error, number | readonly number[]> =>
   groups === undefined || groups === []
     ? addRecipientToMailupListOrGroupTask(
         email,
         name,
+        surname,
+        organization,
         token,
         `/API/v1.1/Rest/ConsoleService.svc/Console/List/${idList}/Recipient?ConfirmEmail=true`
       )
@@ -272,6 +302,8 @@ export const addRecipientToMailupTask = (
         addRecipientToMailupListOrGroupTask(
           email,
           name,
+          surname,
+          organization,
           token,
           `/API/v1.1/Rest/ConsoleService.svc/Console/Group/${idGroup}/Recipient?ConfirmEmail=true`
         )
@@ -303,8 +335,10 @@ export function PostNewslettersRecipientsHandler(): IPostNewslettersRecipientsHa
           listId,
           recipientRequest.email,
           recipientRequest.name,
+          recipientRequest.surname,
           authMailupResponse.access_token,
-          recipientRequest.groups
+          recipientRequest.groups,
+          recipientRequest.organization
         )
       )
       .fold<IResponseSuccessJson<RecipientResponse> | ErrorResponses>(
