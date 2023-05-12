@@ -32,10 +32,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version-file: "app/.node-version"
-          # cache: "yarn"
-          # cache-dependency-path: |
-          #   yarn.lock
-          #   package.json
 
       - name: 'npm install, build, and test'
         run: |
@@ -58,4 +54,3 @@ jobs:
           resource-group-name: ${{ env.RESOURCE_GROUP_NAME }}
           app-name: ${{ env.APP_NAME }}
           package: app
-
