@@ -52,3 +52,5 @@ jobs:
           resource-group-name: ${{ env.RESOURCE_GROUP_NAME }}
           app-name: ${{ env.APP_NAME }}
           package: artifact.zip
+
+          
