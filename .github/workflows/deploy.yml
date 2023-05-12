@@ -28,10 +28,14 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
 
-      - name: Setup Node 12.x
-        uses: actions/setup-node@v1
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3
         with:
-          node-version: '12.19.1'
+          node-version-file: "app/.node-version"
+          cache: "yarn"
+          cache-dependency-path: |
+            yarn.lock
+            package.json
 
       - name: 'npm install, build, and test'
         run: |
@@ -53,4 +57,5 @@ jobs:
         with:
           resource-group-name: ${{ env.RESOURCE_GROUP_NAME }}
           app-name: ${{ env.APP_NAME }}
-          package: artifact.zip
+          package: app
+
