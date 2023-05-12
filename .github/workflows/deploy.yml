@@ -32,10 +32,10 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version-file: "app/.node-version"
-          cache: "yarn"
-          cache-dependency-path: |
-            yarn.lock
-            package.json
+          # cache: "yarn"
+          # cache-dependency-path: |
+          #   yarn.lock
+          #   package.json
 
       - name: 'npm install, build, and test'
         run: |
