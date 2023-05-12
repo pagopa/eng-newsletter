@@ -33,7 +33,7 @@ jobs:
         with:
           node-version-file: "app/.node-version"
 
-      - name: 'npm install, build, and test'
+      - name: 'Install and build'
         run: |
           cd app
           yarn install --immutable
