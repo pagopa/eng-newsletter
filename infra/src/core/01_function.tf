@@ -25,6 +25,11 @@ data "azurerm_key_vault_secret" "newsletter-MAILUP-PASSWORD" {
   key_vault_id = module.key_vault.id
 }
 
+data "azurerm_key_vault_secret" "newsletter-RECAPTCHA-SECRET" {
+  name         = "newsletter-RECAPTCHA-SECRET"
+  key_vault_id = module.key_vault.id
+}
+
 resource "azurerm_storage_account" "app" {
   name                            = replace("${local.project}appsa", "-", "")
   resource_group_name             = azurerm_resource_group.app_rg.name
@@ -33,7 +38,6 @@ resource "azurerm_storage_account" "app" {
   account_replication_type        = "ZRS"
   min_tls_version                 = "TLS1_2"
   allow_nested_items_to_be_public = false
-  public_network_access_enabled   = false
 
   tags = var.tags
 }
@@ -80,6 +84,11 @@ resource "azurerm_linux_function_app" "app" {
       ]
     }
 
+    app_service_logs {
+      disk_quota_mb         = 35
+      retention_period_days = 7
+    }
+
   }
 
   app_settings = {
@@ -105,6 +114,7 @@ resource "azurerm_linux_function_app" "app" {
     MAILUP_SECRET    = data.azurerm_key_vault_secret.newsletter-MAILUP-SECRET.value
     MAILUP_USERNAME  = data.azurerm_key_vault_secret.newsletter-MAILUP-USERNAME.value
     MAILUP_PASSWORD  = data.azurerm_key_vault_secret.newsletter-MAILUP-PASSWORD.value
+    RECAPTCHA_SECRET = data.azurerm_key_vault_secret.newsletter-RECAPTCHA-SECRET.value
 
   }
 

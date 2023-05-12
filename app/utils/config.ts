@@ -12,19 +12,12 @@ import { NonEmptyString } from "italia-ts-commons/lib/strings";
 // global app configuration
 export type IConfig = t.TypeOf<typeof IConfig>;
 export const IConfig = t.interface({
-  IO_PAGOPA_PROXY_PROD_BASE_URL: NonEmptyString,
-  IO_PAGOPA_PROXY_TEST_BASE_URL: NonEmptyString,
-  IO_PAY_CHALLENGE_RESUME_URL: NonEmptyString,
-  IO_PAY_ORIGIN: NonEmptyString,
-  IO_PAY_XPAY_REDIRECT: NonEmptyString,
   MAILUP_ALLOWED_GROUPS: t.array(t.string).type,
   MAILUP_ALLOWED_LISTS: t.array(t.string).type,
   MAILUP_CLIENT_ID: NonEmptyString,
   MAILUP_PASSWORD: NonEmptyString,
   MAILUP_SECRET: NonEmptyString,
   MAILUP_USERNAME: NonEmptyString,
-  PAGOPA_BASE_PATH: NonEmptyString,
-  PAY_PORTAL_RECAPTCHA_SECRET: NonEmptyString,
   RECAPTCHA_SECRET: NonEmptyString
 });
 
