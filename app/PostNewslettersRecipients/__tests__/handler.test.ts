@@ -4,25 +4,13 @@ import * as fetch from "../../clients/fetchApi";
 
 // tslint:disable-next-line: no-object-mutation
 process.env = {
-  IO_PAGOPA_PROXY_PROD_BASE_URL: "http://localhost:7071/api/v1",
-  IO_PAGOPA_PROXY_TEST_BASE_URL: "http://localhost:7071/api/v1",
-  IO_PAY_CHALLENGE_RESUME_URL:
-    "http://localhost:1234/response.html?id=idTransaction",
-  IO_PAY_ORIGIN: "http://localhost:1234",
-  IO_PAY_XPAY_REDIRECT: "http://localhost",
-
-  PAGOPA_BASE_PATH: "NonEmptyString",
-
   MAILUP_ALLOWED_GROUPS: "6,123",
   MAILUP_ALLOWED_LISTS: "1",
   MAILUP_CLIENT_ID: "26XXXXXXXXXXXXXXXXXXXXXXXe",
   MAILUP_PASSWORD: "XXXXXXX",
   MAILUP_SECRET: "f638dexxxxxxxxxxxx8812480",
   MAILUP_USERNAME: "mXXXXXX",
-
   RECAPTCHA_SECRET: "6dddddd0P7N0dddddTdd",
-
-  PAY_PORTAL_RECAPTCHA_SECRET: "6dddddd0P7N0dddddTdd"
 };
 
 import * as handlers from "../handler";
