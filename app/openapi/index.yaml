@@ -28,7 +28,7 @@ paths:
         description: client id
         type: string
         enum:
-          - "io" 
+          - "io"
           - "pagopa"
       - name: body
         in: body
