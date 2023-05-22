@@ -225,14 +225,17 @@ export const addRecipientToMailupListOrGroupTask = (
               Email: email,
               Fields: [
                 {
+                  Id: 1,
                   Description: "campo1",
                   Value: name
                 },
                 {
+                  Id: 2,
                   Description: "campo2",
                   Value: surname
                 },
                 {
+                  Id: 3,
                   Description: "campo3",
                   Value: organization
                 }
