@@ -77,10 +77,10 @@ resource "azurerm_linux_function_app" "app" {
     cors {
       allowed_origins = [
         "http://localhost:8000",
-        "www.pagopa.it",
-        "www.pagopa.gov.it",
-        "io.italia.it",
-        "firma.io.italia.it",
+        "https://www.pagopa.it",
+        "https://www.pagopa.gov.it",
+        "https://io.italia.it",
+        "https://firma.io.italia.it",
       ]
     }
 
