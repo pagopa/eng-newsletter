@@ -293,7 +293,7 @@ export const addRecipientToMailupTask = (
   groups: readonly string[] | undefined,
   organization: string | undefined
 ): TaskEither<Error, number | readonly number[]> =>
-  groups === undefined || groups === []
+  groups === undefined || groups.length === 0
     ? addRecipientToMailupListOrGroupTask(
         email,
         name,
@@ -327,7 +327,7 @@ export function PostNewslettersRecipientsHandler(): IPostNewslettersRecipientsHa
         fromPredicate<Error, readonly string[] | undefined>(
           groups =>
             groups === undefined ||
-            groups.length === [] ||
+            groups.length === 0 ||
             groups.every(group => config.MAILUP_ALLOWED_GROUPS.includes(group)),
           () => new Error("forbidden_mailup_groups")
         )(recipientRequest.groups)
