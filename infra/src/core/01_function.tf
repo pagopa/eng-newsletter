@@ -25,6 +25,11 @@ data "azurerm_key_vault_secret" "newsletter-MAILUP-PASSWORD" {
   key_vault_id = module.key_vault.id
 }
 
+data "azurerm_key_vault_secret" "newsletter-MAILUP-REFRESH-TOKEN" {
+  name         = "newsletter-REFRESH-TOKEN"
+  key_vault_id = module.key_vault.id
+}
+
 data "azurerm_key_vault_secret" "newsletter-RECAPTCHA-SECRET" {
   name         = "newsletter-RECAPTCHA-SECRET"
   key_vault_id = module.key_vault.id
