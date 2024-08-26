@@ -115,11 +115,12 @@ resource "azurerm_linux_function_app" "app" {
     MAILUP_ALLOWED_LISTS  = "2,4,6,7"
 
     // Mailup account
-    MAILUP_CLIENT_ID = data.azurerm_key_vault_secret.newsletter-MAILUP-CLIENT-ID.value
-    MAILUP_SECRET    = data.azurerm_key_vault_secret.newsletter-MAILUP-SECRET.value
-    MAILUP_USERNAME  = data.azurerm_key_vault_secret.newsletter-MAILUP-USERNAME.value
-    MAILUP_PASSWORD  = data.azurerm_key_vault_secret.newsletter-MAILUP-PASSWORD.value
-    RECAPTCHA_SECRET = data.azurerm_key_vault_secret.newsletter-RECAPTCHA-SECRET.value
+    MAILUP_CLIENT_ID     = data.azurerm_key_vault_secret.newsletter-MAILUP-CLIENT-ID.value
+    MAILUP_SECRET        = data.azurerm_key_vault_secret.newsletter-MAILUP-SECRET.value
+    MAILUP_USERNAME      = data.azurerm_key_vault_secret.newsletter-MAILUP-USERNAME.value
+    MAILUP_PASSWORD      = data.azurerm_key_vault_secret.newsletter-MAILUP-PASSWORD.value
+    MAILUP_REFRESH_TOKEN = data.azurerm_key_vault_secret.newsletter-MAILUP-REFRESH-TOKEN.value
+    RECAPTCHA_SECRET     = data.azurerm_key_vault_secret.newsletter-RECAPTCHA-SECRET.value
 
   }
 
