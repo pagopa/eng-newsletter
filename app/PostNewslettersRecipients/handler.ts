@@ -251,7 +251,7 @@ export const addRecipientToMailupListOrGroupTask = (
         headers: {
           // prettier-ignore
           // tslint:disable-next-line: prettier
-          "Authorization": `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
           "Content-Type": "application/json"
         },
         method: "POST"
