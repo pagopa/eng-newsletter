@@ -47,7 +47,7 @@ jobs:
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
       - name: Deploy
-        uses: azure/webapps-deploy@2fdd5c3ebb4e540834e86ecc1f6fdcd5539023ee #v3.0.2
+        uses: azure/webapps-deploy@4bfb30bef2c330e36be280cb1e5726d0fac06233 #v2.2.13
         with:
           resource-group-name: ${{ env.RESOURCE_GROUP_NAME }}
           app-name: ${{ env.APP_NAME }}
