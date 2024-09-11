@@ -165,7 +165,7 @@ export const getMailupAuthTokenTask = (
   tryCatch(
     () =>
       fetchApi(`${mailupHost}/Authorization/OAuth/Token`, {
-        body: `grant_type=password&client_id=${config.MAILUP_CLIENT_ID}&client_secret=${config.MAILUP_SECRET}&username=${config.MAILUP_USERNAME}&password=${config.MAILUP_PASSWORD}`,
+        body: `grant_type=refresh_token&client_id=${config.MAILUP_CLIENT_ID}&client_secret=${config.MAILUP_SECRET}&refresh_token=${config.MAILUP_REFRESH_TOKEN}`,
         headers: {
           "Content-Type": "application/x-www-form-urlencoded"
         },
@@ -249,8 +249,9 @@ export const addRecipientToMailupListOrGroupTask = (
       return fetchApi(`${mailupHost}${path}`, {
         body: JSON.stringify(request),
         headers: {
+          // prettier-ignore
           // tslint:disable-next-line: prettier
-          "Authorization": `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
           "Content-Type": "application/json"
         },
         method: "POST"
@@ -292,7 +293,7 @@ export const addRecipientToMailupTask = (
   groups: readonly string[] | undefined,
   organization: string | undefined
 ): TaskEither<Error, number | readonly number[]> =>
-  groups === undefined || groups === []
+  groups === undefined || groups.length === 0
     ? addRecipientToMailupListOrGroupTask(
         email,
         name,
@@ -326,7 +327,7 @@ export function PostNewslettersRecipientsHandler(): IPostNewslettersRecipientsHa
         fromPredicate<Error, readonly string[] | undefined>(
           groups =>
             groups === undefined ||
-            groups === [] ||
+            groups.length === 0 ||
             groups.every(group => config.MAILUP_ALLOWED_GROUPS.includes(group)),
           () => new Error("forbidden_mailup_groups")
         )(recipientRequest.groups)
