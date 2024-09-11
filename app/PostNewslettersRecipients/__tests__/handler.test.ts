@@ -7,10 +7,9 @@ process.env = {
   MAILUP_ALLOWED_GROUPS: "6,123",
   MAILUP_ALLOWED_LISTS: "1",
   MAILUP_CLIENT_ID: "26XXXXXXXXXXXXXXXXXXXXXXXe",
-  MAILUP_PASSWORD: "XXXXXXX",
   MAILUP_SECRET: "f638dexxxxxxxxxxxx8812480",
-  MAILUP_USERNAME: "mXXXXXX",
-  RECAPTCHA_SECRET: "6dddddd0P7N0dddddTdd",
+  MAILUP_REFRESH_TOKEN: "ZZZZZZZxxxxxxyyyyyyy0",
+  RECAPTCHA_SECRET: "6dddddd0P7N0dddddTdd"
 };
 
 import * as handlers from "../handler";

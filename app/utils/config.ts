@@ -15,9 +15,8 @@ export const IConfig = t.interface({
   MAILUP_ALLOWED_GROUPS: t.array(t.string).type,
   MAILUP_ALLOWED_LISTS: t.array(t.string).type,
   MAILUP_CLIENT_ID: NonEmptyString,
-  MAILUP_PASSWORD: NonEmptyString,
   MAILUP_SECRET: NonEmptyString,
-  MAILUP_USERNAME: NonEmptyString,
+  MAILUP_REFRESH_TOKEN: NonEmptyString,
   RECAPTCHA_SECRET: NonEmptyString
 });
 
