@@ -86,6 +86,9 @@ resource "azurerm_linux_function_app" "app" {
         "https://www.pagopa.gov.it",
         "https://io.italia.it",
         "https://firma.io.italia.it",
+        "https://ioapp.it",
+        "https://www.ioapp.it",
+        "https://d2m1nc4792c1zk.cloudfront.net/"
       ]
     }
 
