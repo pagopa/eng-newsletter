@@ -88,7 +88,7 @@ resource "azurerm_linux_function_app" "app" {
         "https://firma.io.italia.it",
         "https://ioapp.it",
         "https://www.ioapp.it",
-        "https://d2m1nc4792c1zk.cloudfront.net/"
+        "https://d2m1nc4792c1zk.cloudfront.net/",
       ]
     }
 
